@@ -1,70 +1,136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three Cards</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 </head>
 
 <body>
 
-    <div class="container-fluid p-5" style="background-color:lightblue">
-        <div class="h1 text-center" style="color:white">Profile</div>
+    <div class="container-fluid p-5 rounded-3" style="background-color:black">
+        <div class="h1 text-center" style="color:white">MacBook pro</div>
+        <div class="h1 text-center" style="color:white">Activity 4</div>
     </div>
 
-    <div class="text-center my-4">
-        <img src="PROFILE.jfif" alt="Profile Picture" class="img-fluid rounded" width="250" height="300">
-        <p class="mt-3 px-3">
-            Hello! I'm Clide Ivans Guevarra,I'm Second year college in Polytechnic University of The Philippines,I'm taking Diploma and information technology I'm second
-    </div>
-
-    <div class="container mt-5">
+    <div class="container-fluid py-4 text-center" style="background-color: #2c2c2c;">
         <div class="row">
-            <!-- Card 1 -->
-            <div class="col-md-4 mb-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Activity 4</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">First Subtitle</h6>
-                        <p class="card-text"></p>
-                        <a href="A04/index.html" class="card-link">link</a>
-                        <a href="#" class="card-link"></a>
+            <div class="col">
+                <img src="pro.jpg" alt="pro" class="img-fluid rounded-5 shadow" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid py-4" style="background-color: black;">
+        <div class="row">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4" style="height: 200px;">
+                        <img src="ONE.jfif" alt="Image 1" class="img-fluid rounded-5"
+                            style="height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4 bg-white" style="height: 200px;">
+                        <p class="text-black text-center">M4 Max5 <br>
+                            Up to 18 hours video streaming <br> Up to 13 hours wireless web <br> 72.4-watt-hour
+                            lithium-polymer battery <br>
+                            96W USB-C Power Adapter <br>
+                            USB-C to MagSafe 3 Cable <br> Fast-charge capable with 96W USB-C Power Adapter <br>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4" style="height: 200px;">
+                        <img src="four.jpg" alt="Image 1" class="img-fluid rounded-5"
+                            style="height: 100%; object-fit: cover;">
                     </div>
                 </div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="col-md-4 mb-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Card Two</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Second Subtitle</h6>
-                        <p class="card-text">This is the second card following the Card Three style.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4" style="height: 200px;">
+                        <img src="two.png" alt="Image 1" class="img-fluid rounded-5"
+                            style="height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4 bg-white" style="height: 200px;">
+                        <p class="text-black text-center">Video Playback <br>
+                            Supported formats include HEVC,H.264,AV1 and ProRes <br>
+                            HDR with Dolby Vision, HDR10+/HDR10, and HLG <br></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4" style="height: 200px;">
+                        <img src="five.jpg" alt="Image 1" class="img-fluid rounded-5"
+                            style="height: 100%; object-fit: cover;">
                     </div>
                 </div>
             </div>
 
-            <!-- Card 3 -->
-            <div class="col-md-4 mb-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Card Three</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Third Subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4 d-flex flex-column align-items-center justify-content-center bg-white"
+                        style="height: 200px;">
+                        <p class="text-black text-center">36GB <br>
+                            36GB <br> unified memory <br>
+                            Configurable to: <br>
+                            48GB, 64GB, or <br> 128GB <br>(M4 Max with 16‑core CPU)</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4" style="height: 200px;">
+                        <img src="three.png" alt="Image 1" class="img-fluid rounded-5"
+                            style="height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4 bg-white" style="height: 200px;">
+                        <p class="text-black text-center">Size and Weight <br>
+                            Height: 1.55cm<br> Width: 31.26cm <br>
+                            Depth: 22.12cm <br> Weight (M4): 1.55kg9 <br>
+                            Weight (M4 Pro): 1.60kg9<br>Weight (M4 Max): 1.62kg9</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4" style="height: 200px;">
+                        <img src="seven.webp" alt="Image 1" class="img-fluid rounded-5"
+                            style="height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4 d-flex flex-column align-items-center justify-content-center bg-white"
+                        style="height: 200px;">
+                        <p class="text-black text-center">Audio Playback<br>
+                            Supported formats include AAC, MP3, Apple Lossless, <br>
+                            FLAC, Dolby Digital, Dolby Digital Plus, and Dolby Atmos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col shadow rounded-5 my-3 m-4" style="height: 200px;">
+                        <img src="six.jpg" alt="Image 1" class="img-fluid rounded-5"
+                            style="height: 100%; object-fit: cover;">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
