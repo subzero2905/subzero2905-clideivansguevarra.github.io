@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valorant Weapon Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .picture-container {
+      width: 300px;
+      height: 300px;
+      background-color: #f0f0f0;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem auto;
+      overflow: hidden;
+    }
+
+    .picture-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .badge-category {
+      display: inline-block;
+      padding: 0.5em 1em;
+      border-radius: 1rem;
+      color: white;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      text-transform: capitalize;
+      font-size: 1rem;
+    }
+
+    .description {
+      margin-top: 1rem;
+      font-style: italic;
+      color: #555;
+    }
+
+    .price {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #222;
+    }
+
+    .btn-back {
+      margin-top: 2rem;
+    }
+
+    body {
+      background-color: #fff;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    header {
+      background-color: #111;
+      padding: 1rem 0;
+      margin-bottom: 2rem;
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    header a {
+      color: #eee;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    header a:hover {
+      background-color: #eee;
+      color: #111;
+      border-color: #ddd;
+    }
+
+    header h3 {
+      color: #eee;
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.5rem;
+      flex-grow: 1;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a href="index.html">Home</a>
+      <h3>Weapon Details</h3>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 text-center" id="weapon-detail"></div>
+    </div>
+  </main>
+
+  <script>
+    const categoryColors = {
+      Sidearm: "#6c757d",
+      SMG: "#0d6efd",
+      Rifle: "#198754",
+      Sniper: "#dc3545",
+      Shotgun: "#ffc107",
+      Heavy: "#fd7e14",
+      Melee: "#6610f2"
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    const container = document.getElementById('weapon-detail');
+
+    async function loadWeapon() {
+      try {
+        const response = await fetch(`https://valorant-api.com/v1/weapons/${id}`);
+        const result = await response.json();
+
+        if (!result.data) {
+          container.innerHTML = `<p class="text-danger">Weapon not found.</p>`;
+          return;
+        }
+
+        const w = result.data;
+        const category = w.category.split("::").pop();
+        const color = categoryColors[category] || "#6c757d";
+        const img = w.displayIcon || w.displayIconSmall || '';
+        const price = w.shopData?.cost ? `${w.shopData.cost} Credits` : 'N/A';
+        const description = w.description || 'No description available.';
+
+        container.innerHTML = `
+          <div class="picture-container">
+            <img src="${img}" alt="${w.displayName}" loading="lazy" />
+          </div>
+          <h2>${w.displayName}</h2>
+          <div class="badge-category" style="background-color: ${color}">${category}</div>
+          <p class="description">${description}</p>
+          <p class="price">Price: ${price}</p>
+          <a href="index.html" class="btn btn-outline-secondary btn-back">Back to list</a>
+        `;
+      } catch {
+        container.innerHTML = `<p class="text-danger">Could not load weapon details. Please try again later.</p>`;
+      }
+    }
+
+    if (id) {
+      loadWeapon();
+    } else {
+      container.innerHTML = `<p class="text-danger">No weapon selected.</p>`;
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
