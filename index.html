@@ -2,85 +2,539 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clide Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #ddd;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background 0.3s ease;
+        }
+
+        body.dark header {
+            background: #1f1f1f;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        body.dark .logo {
+            color: #ddd;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        body.dark .nav-links li a {
+            color: #ddd;
+        }
+
+        .nav-links li a:hover {
+            color: #3498db;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 2px;
+            background: #333;
+            margin: 4px 0;
+            width: 25px;
+            transition: background 0.3s ease;
+        }
+
+        body.dark .menu-toggle span {
+            background: #ddd;
+        }
+
+        .hero {
+            padding: 80px 0;
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        body.dark .section-title {
+            color: #ddd;
+        }
+
+        .about-content,
+        .skills-list,
+        .services-list,
+        .work-list,
+        .activity-list {
+            margin-top: 20px;
+        }
+
+        .about-content img {
+            border-radius: 10px;
+            width: 250px;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .skills-list span {
+            display: inline-block;
+            background: #3498db;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .services-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .service {
+            background: #fff;
+            padding: 20px;
+            flex: 1;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body.dark .service {
+            background: #1f1f1f;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+        }
+
+        .work-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .work-item {
+            background: #fff;
+            padding: 20px;
+            flex: 1;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body.dark .work-item {
+            background: #1f1f1f;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-left: 5px solid #3498db;
+            border-radius: 10px;
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        body.dark .card {
+            background: #1f1f1f;
+        }
+
+        .card .info h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        body.dark .card .info h3 {
+            color: #ddd;
+        }
+
+        .card .info p {
+            color: #555;
+        }
+
+        body.dark .card .info p {
+            color: #aaa;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        #darkModeToggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #3498db;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.6);
+            transition: background 0.3s ease;
+            z-index: 200;
+        }
+
+        #darkModeToggle:hover {
+            background: #2980b9;
+        }
+
+        #darkModeToggle svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .parallax-container {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('pokedex-background.jpg');
+            background-size: cover;
+            background-position: center;
+            transform: translateZ(0);
+            will-change: transform;
+            transition: transform 0.3s ease;
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            font-weight: 600;
+        }
+
+        body.dark .parallax-content {
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #fff;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .services-list,
+            .work-list {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container-fluid p-5" style="background-color:lightblue">
-        <div class="h1 text-center" style="color:white">Profile</div>
-    </div>
-
-    <div class="text-center my-4">
-        <img src="PROFILE.jfif" alt="Profile Picture" class="img-fluid rounded" width="250" height="300">
-        <p class="mt-3 px-3">
-            Hello! I'm Clide Ivans Guevarra,I'm Second year college in Polytechnic University of The Philippines,I'm taking Diploma and information technology I'm second
-    </div>
-
-    <div class="container mt-5">
-        <div class="row">
-           
-            <div class="col-md-4 mb-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Activity 4</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">First Subtitle</h6>
-                        <p class="card-text"></p>
-                        <a href="A04/index.html" class="card-link">Activity4 link</a>
-                        <a href="#" class="card-link"></a>
-                    </div>
+    <header>
+        <div class="container">
+            <h1 class="logo">Clide Ivans Guevarra</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#activity">Activity</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
                 </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Activity 5</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Second Subtitle</h6>
-                        <p class="card-text"></p>
-                        <a href="A05/index.html" class="card-link">Activity5 link</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Acivity6</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Third Subtitle</h6>
-                        <p class="card-text"></p>
-                        <a href="A06/index.html" class="card-link">Acivity6 link</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Activity 7</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Fourt Subtitle</h6>
-                        <p class="card-text"></p>
-                        <a href="A07/" class="card-link">Activity7 link</a>
-                    </div>
-                </div>
-            </div>
-
-             <div class="col-md-4 mb-4">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Activity 8</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary">Fourt Subtitle</h6>
-                        <p class="card-text"></p>
-                        <a href="A08/index.html" class="card-link">Activity8   link</a>
-                    </div>
-                </div>
-            </div>
-
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2 data-aos="fade-up" data-aos-duration="1000">Hi, I'm Clide</h2>
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">A Web Developer & Designer</p>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content" data-aos="fade-right" data-aos-duration="1000" style="text-align: center;">
+                <img src="PROFILE.jfif" alt="Profile Picture" />
+                <h2>About Me</h2>
+                <p>Hello! I'm Clide Ivans Guevarra, a second-year college student at the Polytechnic University of the
+                    Philippines. I'm taking a Diploma in Information Technology.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Skills</h2>
+            <div class="skills-list" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
+                style="text-align: center;">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Bootstrap</span>
+                <span>React</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Services</h2>
+            <div class="services-list">
+                <div class="service" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <h3>Web Development</h3>
+                    <p>Building responsive and modern websites using the latest technologies.</p>
+                </div>
+                <div class="service" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                    <h3>UI/UX Design</h3>
+                    <p>Creating intuitive and beautiful user interfaces for web applications.</p>
+                </div>
+                <div class="service" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                    <h3>Consultation</h3>
+                    <p>Providing expert advice to improve your digital presence and strategy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="work" id="work">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Work</h2>
+            <div class="work-list">
+
+                <div class="work-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                    <h3>Parallax</h3>
+                    <p>"Parallax" generally refers to a parallax scrolling effect used in web design, where background images move at a different speed than the foreground content as a user scrolls down the page. This creates an illusion of depth and a more immersive browsing experience.
+
+</p>
+                </div>
+
+                <div class="work-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                    <h3>Valorant Weapons</h3>
+                    <p>Displaying Valorant weapons fetched from API with Bootstrap cards.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="activity" id="activity">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Activity</h2>
+            <div class="activity-list">
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Activity 4</h5>
+                            <p class="card-text"></p>
+                            <a href="A04/index.html" class="card-link">Activity4 link</a>
+                            <a href="#" class="card-link"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Activity 5</h5>
+                            <p class="card-text"></p>
+                            <a href="A05/index.html" class="card-link">Activity5 link</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Acivity6</h5>
+                            <p class="card-text"></p>
+                            <a href="A06/index.html" class="card-link">Acivity6 link</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Activity 7</h5>
+                            <p class="card-text"></p>
+                            <a href="A07/" class="card-link">Activity7 link</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Activity 8</h5>
+                            <p class="card-text"></p>
+                            <a href="A08/index.html" class="card-link">Activity8 link</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Clide Ivans Guevarra.</p>
+    </footer>
+
+    <button id="darkModeToggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+        </svg>
+    </button>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.removeItem('darkMode');
+            }
+        });
+
+        function parallaxEffect(e, container) {
+            const bg = container.querySelector('.parallax-bg');
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const moveX = (x / rect.width - 0.5) * 15;
+            const moveY = (y / rect.height - 0.5) * 15;
+            bg.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
+        }
+
+        function resetParallax(container) {
+            const bg = container.querySelector('.parallax-bg');
+            bg.style.transform = 'translate(0, 0) scale(1)';
+        }
+    </script>
 
 </body>
 
